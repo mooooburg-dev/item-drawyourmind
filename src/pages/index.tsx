@@ -27,8 +27,10 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-5 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center p-5 ${inter.className}`}
     >
+      <Image src={'/assets/logo.png'} width={100} height={100} alt="logo" />
+      <h1 className="my-5"></h1>
       {/* <h1>item.drawyourmind.com</h1> */}
       <div className="w-full">
         {data &&
