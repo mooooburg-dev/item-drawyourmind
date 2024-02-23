@@ -27,17 +27,21 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center justify-between p-5 ${inter.className}`}
     >
-      <div>
+      {/* <h1>item.drawyourmind.com</h1> */}
+      <div className="w-full">
         {data &&
           data.map((item) => (
             <div
-              className={`item w-full h-7 flex items-center gap-3`}
+              className={`item h-20 flex items-center bg-red-400`}
               key={item._id}
               onClick={() => handleItemClick(item.url)}
             >
-              <div>{item.no}</div>
+              <div className="w-20 text-center">{`${String(item.no).padStart(
+                4,
+                '0'
+              )}`}</div>
               <div>
                 <Image
                   src={item.image}
@@ -46,7 +50,7 @@ export default function Home() {
                   alt={item.name}
                 />
               </div>
-              <div>{item.name}</div>
+              <div className="mx-4">{item.name}</div>
             </div>
           ))}
       </div>
