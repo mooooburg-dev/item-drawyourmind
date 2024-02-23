@@ -27,24 +27,23 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center p-5 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center p-5 ${inter.className} bg-slate-950`}
     >
       <Image src={'/assets/logo.png'} width={100} height={100} alt="logo" />
       <h1 className="my-5"></h1>
       {/* <h1>item.drawyourmind.com</h1> */}
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-2">
         {data &&
           data.map((item) => (
             <div
-              className={`item h-20 flex items-center bg-red-400`}
+              className={`item h-20 w-full flex items-center bg-red-400 rounded-lg`}
               key={item._id}
               onClick={() => handleItemClick(item.url)}
             >
-              <div className="w-20 text-center">{`${String(item.no).padStart(
-                4,
-                '0'
-              )}`}</div>
-              <div>
+              <div className="min-w-16 text-center">{`${String(
+                item.no
+              ).padStart(4, '0')}`}</div>
+              <div className="min-w-16">
                 <Image
                   src={item.image}
                   width={60}
@@ -52,7 +51,7 @@ export default function Home() {
                   alt={item.name}
                 />
               </div>
-              <div className="mx-4">{item.name}</div>
+              <div className="break-keep ">{item.name}</div>
             </div>
           ))}
       </div>
