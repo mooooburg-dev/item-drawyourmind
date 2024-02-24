@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
       {/* Google Analytics 스크립트 삽입 */}
       <Script
         strategy="lazyOnload"
-        src="https://www.googletagmanager.com/gtag/js?id=G-E9YSRVHKVP"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
       />
 
       <Script strategy="lazyOnload" id="GA">
