@@ -17,12 +17,15 @@ export default function Home() {
 
   const handleItemClick = (item: any) => {
     const { no, name, url } = item;
-    window.open(url, '_blank');
+
+    // GA
     window.gtag('event', 'click', {
       event_category: 'Item',
       event_label: name,
       value: no,
     });
+
+    window.open(url, '_blank');
   };
 
   const init = () => {
