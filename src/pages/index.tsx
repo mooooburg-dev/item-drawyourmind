@@ -15,8 +15,14 @@ export default function Home() {
     setData(result);
   };
 
-  const handleItemClick = (url: string) => {
+  const handleItemClick = (item: any) => {
+    const { no, name, url } = item;
     window.open(url, '_blank');
+    window.gtag('event', 'click', {
+      event_category: 'Item',
+      event_label: name,
+      value: no,
+    });
   };
 
   const init = () => {
@@ -38,7 +44,7 @@ export default function Home() {
             <div
               className={`item h-20 w-full flex items-center bg-red-400 rounded-lg`}
               key={item._id}
-              onClick={() => handleItemClick(item.url)}
+              onClick={() => handleItemClick(item)}
             >
               <div className="min-w-16 text-center">{`${String(
                 item.no
