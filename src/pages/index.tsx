@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import { useEffect, useState } from 'react';
+import * as gtag from '../helpers/gtag';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,7 @@ export default function Home() {
     const { no, name, url } = item;
 
     // GA
-    window.gtag('event', 'click', {
+    gtag.event('view_item', {
       event_category: 'Item',
       event_label: name,
       value: no,
