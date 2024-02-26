@@ -43,7 +43,7 @@ export default function Home() {
       <h1 className="my-5"></h1>
       {/* <h1>item.drawyourmind.com</h1> */}
       <div className="w-full flex flex-col gap-2">
-        {data &&
+        {data && data.length > 0 ? (
           data.map((item) => (
             <div
               className={`item h-20 w-full flex items-center bg-red-400 rounded-lg`}
@@ -61,13 +61,18 @@ export default function Home() {
                   alt={item.name}
                 />
               </div>
-              <div className="break-keep ">{item.name}</div>
+              <div className="break-keep text-md ml-1">{item.name}</div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="text-center">
+            <span className="text-white h-full">아이템 불러오는 중...</span>
+          </div>
+        )}
       </div>
       <div className="mt-8">
         {data && data.length > 1 && (
-          <p>
+          <p className="text-sm">
             이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의
             수수료를 제공받습니다.
           </p>
