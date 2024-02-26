@@ -66,7 +66,9 @@ export default function Home() {
           ))
         ) : (
           <div className="text-center">
-            <span className="text-white h-full">아이템 불러오는 중...</span>
+            <span className="text-white h-full">
+              상품 정보를 불러오고 있습니다..
+            </span>
           </div>
         )}
       </div>
