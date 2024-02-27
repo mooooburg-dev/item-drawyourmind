@@ -20,7 +20,7 @@ export default function Home() {
     const { no, name, url } = item;
 
     // GA
-    gtag.event('click', {
+    gtag.event('view_item', {
       event_category: 'Item',
       event_label: name,
       value: no,
