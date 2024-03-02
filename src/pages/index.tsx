@@ -46,14 +46,11 @@ export default function Home() {
         {data && data.length > 0 ? (
           data.map((item) => (
             <div
-              className={`item h-20 w-full flex items-center bg-red-400 rounded-lg`}
+              className={`item h-20 w-full flex items-center bg-red-400 `}
               key={item._id}
               onClick={() => handleItemClick(item)}
             >
-              <div className="min-w-16 text-center">{`${String(
-                item.no
-              ).padStart(4, '0')}`}</div>
-              <div className="min-w-16">
+              <div className="min-w-16 mx-2">
                 <Image
                   src={item.image}
                   width={60}
@@ -61,7 +58,13 @@ export default function Home() {
                   alt={item.name}
                 />
               </div>
-              <div className="break-keep text-md ml-1">{item.name}</div>
+              <div className="flex flex-col items-start">
+                <div className="min-w-16">{`${String(item.no).padStart(
+                  4,
+                  '0'
+                )}`}</div>
+                <div className="break-keep text-md">{item.name}</div>
+              </div>
             </div>
           ))
         ) : (
