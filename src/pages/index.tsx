@@ -39,10 +39,10 @@ export default function Home() {
     <main className={`items-center w-full ${inter.className} bg-slate-950`}>
       <div className="max-w-7xl flex flex-col items-center p-5 min-h-screen mx-auto">
         <Image src={'/assets/logo.png'} width={100} height={100} alt="logo" />
-        <h1 className="my-5 flex flex-col items-center">
+        <div className="my-5 flex flex-col items-center text-white">
           <span>갓생도 템빨</span>
           <span>item.drawyourmind.com</span>
-        </h1>
+        </div>
         {data && data.length > 0 ? (
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2">
             {data.map((item) => (
