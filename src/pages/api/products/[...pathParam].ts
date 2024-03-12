@@ -36,8 +36,10 @@ export default async function handler(
 
   init.headers = {
     ...init.headers,
-    Accept: 'application/json',
     'Content-Type': 'application/json',
+    'Accept-Language': 'ko-KR,ko;q=0.8,en-US;q=0.5,en;q=0.3',
+    'User-Agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
     Authorization: authorization,
   };
 
