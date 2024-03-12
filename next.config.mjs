@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['item-drawyourmind.s3.ap-northeast-2.amazonaws.com'],
+    domains: [
+      'item-drawyourmind.s3.ap-northeast-2.amazonaws.com',
+      'ads-partners.coupang.com',
+    ],
   },
 };
 
