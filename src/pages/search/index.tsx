@@ -40,10 +40,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { query } = context;
   const keyword = query.q;
 
-  console.log(`keyword: ${keyword}`);
+  // const baseUrl: string =
 
   const response = await fetch(
-    `http://localhost:3000/api/products/search?keyword=${keyword}`,
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/search?keyword=${keyword}`,
     {
       method: 'GET',
     }
