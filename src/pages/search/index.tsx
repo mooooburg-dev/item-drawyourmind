@@ -120,7 +120,7 @@ export default function Search({
                 "{keyword}"
               </span>
               <span className="text-xl font-bold break-words">
-                가장 잘 나가는 BEST10
+                제일 잘 팔리는 BEST10
               </span>
             </div>
           )}
