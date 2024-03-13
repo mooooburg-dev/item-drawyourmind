@@ -1,12 +1,11 @@
 import { moneyFormatter } from '@/helpers/utils';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import 'moment/locale/ko';
-import 'moment-timezone';
 
 type Props = {
   keyword: string;
@@ -103,6 +102,7 @@ export default function Search({
         <div className="flex flex-col text-center">
           {isPrice ? (
             <div className="flex flex-col text-center">
+              <span className="text-sm">⏰ {current} 현재</span>
               <span className="text-xl text-purple-600 font-bold">
                 "{keyword}"
               </span>
@@ -112,7 +112,7 @@ export default function Search({
             </div>
           ) : (
             <div className="flex flex-col text-center">
-              <span className="text-sm">{current} 현재</span>
+              <span className="text-sm">⏰ {current} 현재</span>
               <span
                 className="text-purple-600 text-xl font-bold"
                 onClick={landingClickHandler}
@@ -186,7 +186,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const isPrice: boolean = query.isPrice ? JSON.parse(query.isPrice) : false;
 
   // const current = moment().locale('ko').format('MMMM Do YYYY, h:mm:ss a');
-  const current = moment().locale('ko-KR').format('MMMM Do a h시mm분');
+  const current = moment().tz('Asia/Seoul').format('M월 D일 h시m분');
 
   const params: any = {
     ...query,
