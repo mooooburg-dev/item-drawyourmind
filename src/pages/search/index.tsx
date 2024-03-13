@@ -85,7 +85,7 @@ export default function Search({
           type: 'article',
           images: [
             {
-              url: data.productData[0].productUrl,
+              url: data.productData[0].productImage,
               alt: data.productData[0].productName,
             },
           ],
