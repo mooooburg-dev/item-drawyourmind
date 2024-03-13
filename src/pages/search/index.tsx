@@ -9,9 +9,17 @@ import 'moment/locale/ko';
 type Props = {
   keyword: string;
   current: string;
+  isMatch?: boolean;
+  isPrice?: boolean;
   data: any;
 };
-export default function Search({ keyword, current, data }: Props) {
+export default function Search({
+  keyword,
+  current,
+  isMatch = false,
+  isPrice = false,
+  data,
+}: Props) {
   const router = useRouter();
   const [productData, setProductData] = useState<any[]>([]);
 
@@ -19,45 +27,108 @@ export default function Search({ keyword, current, data }: Props) {
     router.push(`/price?keyword=${name.split(' ')[0]}`);
   };
 
+  const landingClickHandler = () => {
+    const landingUrl = data?.landingUrl;
+    window.open(landingUrl, '_blank');
+  };
+
+  const itemClickHandler = (item: any) => {
+    const { productUrl } = item;
+    window.open(productUrl, '_blank');
+  };
+
   useEffect(() => {
     if (data) {
-      setProductData(data.productData);
+      const wordsToMatch = keyword.split(' ');
+      const regexPatterns = wordsToMatch.map((word) => `(?=.*${word})`);
+      const combinedRegex = new RegExp(regexPatterns.join(''));
+
+      let filterData = data.productData;
+
+      if (isPrice) {
+        filterData = data.productData.sort((a: any, b: any) => {
+          return a.productPrice - b.productPrice;
+        });
+      }
+
+      if (isMatch) {
+        filterData = data.productData.filter((item: any) => {
+          if (combinedRegex.test(item.productName)) {
+            console.log('문자열에 배열에 있는 모든 단어가 포함되어 있습니다.');
+            return item;
+          } else {
+            console.log(
+              '문자열에 배열에 있는 모든 단어가 포함되어 있지 않습니다.'
+            );
+          }
+        });
+      }
+
+      setProductData(filterData);
+
+      // setProductData(data.productData);
     }
   }, [data]);
 
   return (
     <div className="max-w-7xl flex flex-col items-center p-5 min-h-screen mx-auto">
-      <div className="flex flex-col">
-        <span>{current} 기준</span>
-        <span className="text-xl font-bold">
-          가장 잘 팔리는 "{keyword}" BEST10
-        </span>
+      <div className="flex flex-col text-center">
+        {isPrice ? (
+          <div className="flex flex-col text-center">
+            <span className="text-xl text-purple-600 font-bold">
+              "{keyword}"
+            </span>
+            <span className="text-xl font-bold">
+              착한가격 TOP{productData.length}
+            </span>
+          </div>
+        ) : (
+          <div className="flex flex-col text-center">
+            <span className="text-sm">{current} 현재</span>
+            <span
+              className="text-purple-600 font-bold"
+              onClick={landingClickHandler}
+            >
+              "{keyword}"
+            </span>
+            <span className="text-xl font-bold break-words">
+              가장 잘 나가는 BEST10
+            </span>
+          </div>
+        )}
       </div>
       {productData && productData.length > 0 && (
-        <div className="flex flex-col gap-4 mt-4">
+        <div className="flex flex-col gap-6 mt-8">
           {productData.map((item, index) => (
-            <div key={item.productId} className="flex gap-3 items-center">
+            <div
+              key={item.productId}
+              className="flex gap-3 items-center cursor-pointer"
+              onClick={() => itemClickHandler(item)}
+            >
               {/* <div className="w-9 p-2">
                 <span className="text-2xl">{item.rank}</span>
               </div> */}
-              <Image
-                src={item.productImage}
-                alt={item.productName}
-                width={120}
-                height={120}
-              />
+              <div className="relative min-h-24 min-w-24 rounded-lg overflow-hidden">
+                <Image
+                  src={item.productImage}
+                  alt={item.productName}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="180px, 180px"
+                />
+              </div>
               <div className="flex flex-col text-md">
                 <span className="break-words line-clamp-2">
                   {item.productName}
                 </span>
                 <div>
-                  <span className="text-xl font-bold">
+                  <span className="text-xl font-bold text-purple-600">
                     {moneyFormatter(item.productPrice)}
                   </span>
                   <span>원</span>
                 </div>
-                <div className="text-xs mt-2">
-                  {item.isRocket && <span>로켓배송</span>}
+                <div className="text-xs mt-1">
+                  {item.isRocket && <span>빠른배송</span>}
                   {item.isFreeShipping && <span>무료배송</span>}
                 </div>
                 {/* <div>
@@ -68,6 +139,11 @@ export default function Search({ keyword, current, data }: Props) {
               </div>
             </div>
           ))}
+          <div className="mt-10 my-4">
+            <span className="text-sm">
+              파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있음
+            </span>
+          </div>
         </div>
       )}
     </div>
@@ -77,7 +153,11 @@ export default function Search({ keyword, current, data }: Props) {
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { query } = context;
   const keyword = query.keyword;
-  const current = moment().locale('ko').format('MMMM Do YYYY, h:mm:ss a');
+  const isMatch: boolean = query.isMatch ? JSON.parse(query.isMatch) : false;
+  const isPrice: boolean = query.isPrice ? JSON.parse(query.isPrice) : false;
+
+  // const current = moment().locale('ko').format('MMMM Do YYYY, h:mm:ss a');
+  const current = moment().locale('ko').format('MMMM Do a h시mm분');
 
   const params: any = {
     ...query,
@@ -96,8 +176,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
   return {
     props: {
-      keyword: keyword,
-      current: current,
+      keyword,
+      current,
+      isMatch,
+      isPrice,
       data: result.data,
     },
   };
