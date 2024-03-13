@@ -12,12 +12,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { method, query } = req;
-  const { pathParam } = query;
+  // const { pathParam } = query;
   const params: any = { ...query };
   delete params['pathParam'];
 
-  const requestUrl = BASE_URL + req.url?.split('/api')[1];
-  let url: string = DOMAIN + requestUrl;
+  const authUrl = BASE_URL + req.url?.split('/api')[1];
+  let url: string = DOMAIN + authUrl;
 
   const init: any = { headers: {} };
 
@@ -29,7 +29,7 @@ export default async function handler(
 
   const authorization = await generateHmac(
     method!,
-    requestUrl,
+    authUrl,
     SECRET_KEY,
     ACCESS_KEY
   );
