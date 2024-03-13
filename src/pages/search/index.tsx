@@ -14,40 +14,54 @@ export default function Search({ keyword, data }: Props) {
       setProductData(data.productData);
     }
   }, [data]);
+
   return (
     <div>
       <div>
         <span>{keyword}</span>
       </div>
-      {productData &&
-        productData.length > 0 &&
-        productData.map((item, index) => (
-          <div key={item.productId}>
-            <Image
-              src={item.productImage}
-              alt={item.productName}
-              width={200}
-              height={200}
-            />
-            <div>{item.productName}</div>
-          </div>
-        ))}
+      {productData && productData.length > 0 && (
+        <div className="flex flex-col gap-4">
+          {productData.map((item, index) => (
+            <div key={item.productId} className="flex gap-3 items-center">
+              <div className="w-9 p-2">
+                <span className="text-2xl">{item.rank}</span>
+              </div>
+              <Image
+                src={item.productImage}
+                alt={item.productName}
+                width={120}
+                height={120}
+              />
+              <div className="flex flex-col text-md">
+                <span className=" line-clamp-2">{item.productName}</span>
+                <div>
+                  <span className="text-xl">{item.productPrice}</span>
+                  <span>원</span>
+                </div>
+                <div className="text-xs mt-2">
+                  {item.isRocket && <span>로켓배송</span>}
+                  {item.isFreeShipping && <span>무료배송</span>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { query } = context;
-  const keyword = query.q;
+  const keyword = query.keyword;
 
-  // const baseUrl: string =
+  const params: string = new URLSearchParams(query).toString();
+  const url: string = `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/search?${params}`;
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/search?keyword=${keyword}`,
-    {
-      method: 'GET',
-    }
-  );
+  const response = await fetch(url, {
+    method: 'GET',
+  });
 
   const result: any = await response.json();
   console.log(result);
