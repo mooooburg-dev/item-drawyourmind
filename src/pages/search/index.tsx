@@ -137,14 +137,19 @@ export default function Search({
                 {/* <div className="w-9 p-2">
                 <span className="text-2xl">{item.rank}</span>
               </div> */}
-                <div className="relative min-h-24 min-w-24 rounded-lg overflow-hidden">
-                  <Image
+                <div className="relative w-20 h-20 min-h-24 min-w-24 rounded-lg overflow-hidden">
+                  <img
+                    src={item.productImage}
+                    alt={item.productName}
+                    className="w-44 h-44 object-fill"
+                  />
+                  {/* <Image
                     src={item.productImage}
                     alt={item.productName}
                     fill
                     style={{ objectFit: 'cover' }}
                     sizes="180px, 180px"
-                  />
+                  /> */}
                 </div>
                 <div className="flex flex-col text-md">
                   <span className="break-words line-clamp-2">
