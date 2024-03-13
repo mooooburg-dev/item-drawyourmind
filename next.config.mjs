@@ -4,7 +4,18 @@ const nextConfig = {
   images: {
     domains: [
       'item-drawyourmind.s3.ap-northeast-2.amazonaws.com',
-      'ads-partners.coupang.com',
+      '*.coupang.com',
+      '*.coupangcdn.com',
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
     ],
   },
 };
