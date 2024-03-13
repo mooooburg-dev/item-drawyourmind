@@ -23,8 +23,8 @@ export default function Search({
 }: Props) {
   const router = useRouter();
   const seoTitle = isPrice
-    ? `현재 ${keyword} 최저가 BEST 상품`
-    : `현재 가장 잘나가는 ${keyword} BEST10`;
+    ? `지금 ${keyword} 최저가 BEST 상품`
+    : `지금 가장 잘팔리는 ${keyword} BEST10`;
   const [productData, setProductData] = useState<any[]>([]);
 
   const handlePriceClick = (name: string) => {
@@ -81,7 +81,7 @@ export default function Search({
         openGraph={{
           title: `${seoTitle}`,
           url: `https://item.drawyourmind.com/search?keyword=${keyword}`,
-          description: `${keyword}! 역시 잘 팔리는건 이유가 있어!`,
+          description: `${keyword}! 역시 잘 나가는건 이유가 있어!`,
           type: 'article',
           images: [
             {
