@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import 'moment/locale/ko';
+import 'moment-timezone';
 
 type Props = {
   keyword: string;
@@ -113,7 +114,7 @@ export default function Search({
             <div className="flex flex-col text-center">
               <span className="text-sm">{current} 현재</span>
               <span
-                className="text-purple-600 font-bold"
+                className="text-purple-600 text-xl font-bold"
                 onClick={landingClickHandler}
               >
                 "{keyword}"
@@ -185,7 +186,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const isPrice: boolean = query.isPrice ? JSON.parse(query.isPrice) : false;
 
   // const current = moment().locale('ko').format('MMMM Do YYYY, h:mm:ss a');
-  const current = moment().locale('ko').format('MMMM Do a h시mm분');
+  const current = moment().locale('ko-KR').format('MMMM Do a h시mm분');
 
   const params: any = {
     ...query,
