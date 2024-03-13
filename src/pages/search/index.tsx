@@ -68,6 +68,7 @@ export default function Search({
         });
       }
 
+      console.log(filterData);
       setProductData(filterData);
 
       // setProductData(data.productData);
