@@ -141,7 +141,7 @@ export default function Search({
                   <img
                     src={item.productImage}
                     alt={item.productName}
-                    className="w-44 h-44 object-fill"
+                    className="w-full h-full object-cover"
                   />
                   {/* <Image
                     src={item.productImage}
