@@ -12,11 +12,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { method, query } = req;
-  // const { pathParam } = query;
+  const { pathParam } = query;
   const params: any = { ...query };
   delete params['pathParam'];
 
-  const authUrl = BASE_URL + req.url?.split('/api')[1];
+  const authUrl: string = `${BASE_URL}/products/${pathParam}?${new URLSearchParams(
+    params
+  )}`;
   let url: string = DOMAIN + authUrl;
 
   const init: any = { headers: {} };
