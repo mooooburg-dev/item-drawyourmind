@@ -81,7 +81,7 @@ export default function Search({
         openGraph={{
           title: `${seoTitle}`,
           url: `https://item.drawyourmind.com/search?keyword=${keyword}`,
-          description: `${seoTitle}`,
+          description: `${keyword}! 역시 잘 팔리는건 이유가 있어!`,
           type: 'article',
           images: [
             {
