@@ -47,7 +47,7 @@ export default function Home() {
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2">
             {data.map((item) => (
               <div
-                className={`item h-20 w-full flex items-center bg-red-400 text-white cursor-pointer rounded-lg p-2 gap-2`}
+                className={`item h-20 w-full min-w-60 flex items-center bg-red-400 text-white cursor-pointer rounded-lg p-2 gap-2`}
                 key={item._id}
                 onClick={() => handleItemClick(item)}
               >
