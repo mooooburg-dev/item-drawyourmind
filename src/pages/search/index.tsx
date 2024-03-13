@@ -24,7 +24,7 @@ export default function Search({
   const router = useRouter();
   const seoTitle = isPrice
     ? `지금 ${keyword} 최저가 BEST 상품`
-    : `지금 가장 잘팔리는 ${keyword} BEST10`;
+    : `지금 제일 잘팔리는 ${keyword} BEST10`;
   const [productData, setProductData] = useState<any[]>([]);
 
   const handlePriceClick = (name: string) => {
