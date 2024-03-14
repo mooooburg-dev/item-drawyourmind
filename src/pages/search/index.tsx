@@ -12,6 +12,7 @@ type Props = {
   current: string;
   isMatch?: boolean;
   isPrice?: boolean;
+  minPrice?: boolean;
   data: any;
 };
 export default function Search({
@@ -19,6 +20,7 @@ export default function Search({
   current,
   isMatch = false,
   isPrice = false,
+  minPrice,
   data,
 }: Props) {
   const router = useRouter();
@@ -43,18 +45,19 @@ export default function Search({
 
   useEffect(() => {
     if (data) {
+      let filterData = data.productData.filter(
+        (item: any) => minPrice! < item.productPrice
+      );
+
+      if (isPrice) {
+        filterData = filterData.sort(
+          (a: any, b: any) => a.productPrice - b.productPrice
+        );
+      }
+
       const wordsToMatch = keyword.split(' ');
       const regexPatterns = wordsToMatch.map((word) => `(?=.*${word})`);
       const combinedRegex = new RegExp(regexPatterns.join(''));
-
-      let filterData = data.productData;
-
-      if (isPrice) {
-        filterData = data.productData.sort((a: any, b: any) => {
-          return a.productPrice - b.productPrice;
-        });
-      }
-
       if (isMatch) {
         filterData = data.productData.filter((item: any) => {
           if (combinedRegex.test(item.productName)) {
@@ -68,10 +71,7 @@ export default function Search({
         });
       }
 
-      console.log(filterData);
       setProductData(filterData);
-
-      // setProductData(data.productData);
     }
   }, [data]);
 
@@ -192,6 +192,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const keyword = query.keyword;
   const isMatch: boolean = query.isMatch ? JSON.parse(query.isMatch) : false;
   const isPrice: boolean = query.isPrice ? JSON.parse(query.isPrice) : false;
+  const minPrice: number = query.minPrice ? Number(query.minPrice) : 0;
 
   // const current = moment().locale('ko').format('MMMM Do YYYY, h:mm:ss a');
   const current = moment().tz('Asia/Seoul').format('M월 D일 h시m분');
@@ -210,6 +211,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   });
 
   const result: any = await response.json();
+  // const result: any = await response.json();
 
   return {
     props: {
@@ -217,6 +219,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
       current,
       isMatch,
       isPrice,
+      minPrice,
       data: result.data,
     },
   };
