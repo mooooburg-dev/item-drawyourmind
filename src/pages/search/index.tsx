@@ -114,14 +114,16 @@ export default function Search({
           ) : (
             <div className="flex flex-col text-center">
               <span className="text-sm">⏰ {current} 현재</span>
-              <span
-                className="text-purple-600 text-xl font-bold"
-                onClick={landingClickHandler}
-              >
-                "{keyword}"
-              </span>
+
               <span className="text-xl font-bold break-words">
-                제일 잘 팔리는 BEST10
+                제일 잘 팔리는{' '}
+                <span
+                  className="text-purple-600 text-xl font-bold"
+                  onClick={landingClickHandler}
+                >
+                  "{keyword}"
+                </span>{' '}
+                BEST10
               </span>
             </div>
           )}
