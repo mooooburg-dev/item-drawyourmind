@@ -66,7 +66,6 @@ export default function Home() {
           <Image src={'/assets/logo.png'} width={100} height={100} alt="logo" />
           <div className="my-5 flex flex-col items-center text-white">
             <span>갓생도 템빨</span>
-            <span>item.drawyourmind.com</span>
           </div>
           {data && data.length > 0 ? (
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-2">
