@@ -75,13 +75,11 @@ export default function Home() {
                   key={item._id}
                   onClick={() => handleItemClick(item)}
                 >
-                  <div className="relative min-h-16 min-w-16 rounded-lg overflow-hidden">
-                    <Image
+                  <div className="relative w-16 h-16 min-h-16 min-w-16 rounded-lg overflow-hidden">
+                    <img
                       src={item.image}
                       alt={item.name}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      sizes="60px, 60px"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="items-start flex flex-col ">
