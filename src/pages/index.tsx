@@ -98,7 +98,7 @@ export default function Home() {
             <div className="flex flex-col items-center mt-28">
               <div className="loader" />
               <span className="text-white h-full mt-14">
-                상품 정보를 불러오고 있습니다..
+                방금 본 상품 찾고 있는 중...
               </span>
             </div>
           )}
