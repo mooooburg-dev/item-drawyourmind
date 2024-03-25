@@ -134,10 +134,6 @@ export default function Product({
                   className="flex gap-3 items-center cursor-pointer"
                   onClick={() => itemClickHandler(item)}
                 >
-                  {/* <div className="w-9 p-2">
-                <span className="text-2xl">{item.rank}</span>
-              </div> */}
-
                   <div className="relative w-20 h-20 min-h-24 min-w-24 rounded-lg overflow-hidden">
                     {index < 3 && (
                       <img
@@ -151,13 +147,6 @@ export default function Product({
                       alt={item.productName}
                       className="w-full h-full object-cover absolute"
                     />
-                    {/* <Image
-                    src={item.productImage}
-                    alt={item.productName}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="180px, 180px"
-                  /> */}
                   </div>
                   <div className="flex flex-col text-md">
                     <span className="break-words line-clamp-2">
