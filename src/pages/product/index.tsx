@@ -135,14 +135,14 @@ export default function Product({
                   className="flex gap-3 items-center cursor-pointer"
                   onClick={() => itemClickHandler(item)}
                 >
+                  {index < 3 && (
+                    <img
+                      src={`/assets/medal${index}.png`}
+                      alt={item.productName}
+                      className="w-8 h-8 object-cover absolute z-10 -ml-4 -mt-16"
+                    />
+                  )}
                   <div className="relative w-20 h-20 min-h-24 min-w-24 rounded-lg overflow-hidden">
-                    {index < 3 && (
-                      <img
-                        src={`/assets/medal${index}.png`}
-                        alt={item.productName}
-                        className="w-10 h-10 object-cover absolute z-10"
-                      />
-                    )}
                     <img
                       src={item.productImage}
                       alt={item.productName}
