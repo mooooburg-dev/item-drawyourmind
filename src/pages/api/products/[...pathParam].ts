@@ -1,6 +1,5 @@
 import { generateHmac } from '@/helpers/generateHmac';
 import { NextApiRequest, NextApiResponse } from 'next';
-import Error from 'next/error';
 
 const ACCESS_KEY: string = 'adb8681c-41ba-477b-9840-19daec90333c';
 const SECRET_KEY: string = '344ab4dead272126a075b5a8b002ca08b85348fa';
