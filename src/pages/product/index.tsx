@@ -27,7 +27,8 @@ export default function Product({
   const [productData, setProductData] = useState<any[]>([]);
 
   const handleDetailClick = (name: string) => {
-    router.push(`/price?keyword=${name.split(' ')[0]}`);
+    const landingUrl = data?.landingUrl;
+    window.open(landingUrl, '_self');
   };
 
   const landingClickHandler = () => {
