@@ -1,11 +1,10 @@
-import { moneyFormatter } from '@/helpers/utils';
-import moment from 'moment-timezone';
-import { GetServerSideProps } from 'next';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
+import React, { useEffect, useState } from 'react';
+import { moneyFormatter } from '@/helpers/utils';
 import 'moment/locale/ko';
+import moment from 'moment-timezone';
 
 type Props = {
   keyword: string;
@@ -112,7 +111,7 @@ export default function Search({
               </span>
             </div>
           ) : (
-            <div className="flex flex-col text-center">
+            <div className="flex flex-col text-center ">
               <span className="text-sm">⏰ {current} 현재</span>
 
               <span className="text-xl font-bold break-words">
@@ -123,7 +122,7 @@ export default function Search({
                 >
                   "{keyword}"
                 </span>{' '}
-                BEST10
+                BEST 10
               </span>
             </div>
           )}
@@ -136,22 +135,12 @@ export default function Search({
                 className="flex gap-3 items-center cursor-pointer"
                 onClick={() => itemClickHandler(item)}
               >
-                {/* <div className="w-9 p-2">
-                <span className="text-2xl">{item.rank}</span>
-              </div> */}
                 <div className="relative w-20 h-20 min-h-24 min-w-24 rounded-lg overflow-hidden">
                   <img
                     src={item.productImage}
                     alt={item.productName}
                     className="w-full h-full object-cover"
                   />
-                  {/* <Image
-                    src={item.productImage}
-                    alt={item.productName}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="180px, 180px"
-                  /> */}
                 </div>
                 <div className="flex flex-col text-md">
                   <span className="break-words line-clamp-2">
