@@ -6,6 +6,7 @@
     "simple-import-sort/exports": "error",
     "import/newline-after-import": "error",
     "unused-imports/no-unused-imports-ts": ["error"],
+    "react/no-unescaped-entities": "off",
     "import/no-anonymous-default-export": [
       "error",
       {
