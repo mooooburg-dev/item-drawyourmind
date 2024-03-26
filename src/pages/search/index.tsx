@@ -123,48 +123,50 @@ export default function Search({
           )}
         </div>
         {productData && productData.length > 0 && (
-          <div className="flex flex-col gap-6 mt-8">
-            {productData.map((item, index) => (
-              <div
-                key={item.productId}
-                className="flex gap-3 items-center cursor-pointer"
-                onClick={() => itemClickHandler(item)}
-              >
-                <div className="relative w-20 h-20 min-h-24 min-w-24 rounded-lg overflow-hidden">
-                  <img
-                    src={item.productImage}
-                    alt={item.productName}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col text-md">
-                  <span className="break-words line-clamp-2">
-                    {item.productName}
-                  </span>
-                  <div>
-                    <span className="text-xl font-bold text-purple-600">
-                      {moneyFormatter(item.productPrice)}
+          <>
+            <div className="flex flex-col flex-grow gap-6 mt-8">
+              {productData.map((item, index) => (
+                <div
+                  key={item.productId}
+                  className="flex gap-3 items-center cursor-pointer"
+                  onClick={() => itemClickHandler(item)}
+                >
+                  <div className="relative w-20 h-20 min-h-24 min-w-24 rounded-lg overflow-hidden">
+                    <img
+                      src={item.productImage}
+                      alt={item.productName}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col text-md">
+                    <span className="break-words line-clamp-2">
+                      {item.productName}
                     </span>
-                    <span>원</span>
-                  </div>
-                  <div className="text-xs mt-1">
-                    {item.isRocket && <span>빠른배송</span>}
-                    {item.isFreeShipping && <span>무료배송</span>}
-                  </div>
-                  {/* <div>
+                    <div>
+                      <span className="text-xl font-bold text-purple-600">
+                        {moneyFormatter(item.productPrice)}
+                      </span>
+                      <span>원</span>
+                    </div>
+                    <div className="text-xs mt-1">
+                      {item.isRocket && <span>빠른배송</span>}
+                      {item.isFreeShipping && <span>무료배송</span>}
+                    </div>
+                    {/* <div>
                   <button onClick={() => handlePriceClick(item.productName)}>
                     최저가 찾아보기
                   </button>
                 </div> */}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
             <div className="mt-10 my-4">
               <span className="text-sm">
                 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있음
               </span>
             </div>
-          </div>
+          </>
         )}
       </div>
     </>
