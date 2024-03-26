@@ -11,7 +11,7 @@ type Props = {
   current: string;
   isMatch?: boolean;
   isPrice?: boolean;
-  minPrice?: boolean;
+  minPrice?: number;
   data: any;
 };
 export default function Search({
@@ -58,14 +58,9 @@ export default function Search({
       const regexPatterns = wordsToMatch.map((word) => `(?=.*${word})`);
       const combinedRegex = new RegExp(regexPatterns.join(''));
       if (isMatch) {
-        filterData = data.productData.filter((item: any) => {
+        filterData = filterData.filter((item: any) => {
           if (combinedRegex.test(item.productName)) {
-            console.log('문자열에 배열에 있는 모든 단어가 포함되어 있습니다.');
             return item;
-          } else {
-            console.log(
-              '문자열에 배열에 있는 모든 단어가 포함되어 있지 않습니다.'
-            );
           }
         });
       }
