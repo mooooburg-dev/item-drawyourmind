@@ -11,7 +11,7 @@ type Props = {
 };
 export default function GoldBox({ data, current }: Props) {
   const [productData, setProductData] = useState<any[]>([]);
-  const seoTitle = '오늘만 이가격! 최대 80%할인!';
+  const seoTitle = '오늘만 이가격! 최대 67%할인!';
 
   useEffect(() => {
     if (data) {
@@ -48,7 +48,7 @@ export default function GoldBox({ data, current }: Props) {
         <div className="flex flex-col text-center font-['JalnanGothic']">
           <span className="text-sm">📆 {current}</span>
           <h1 className={`text-3xl mt-2`}>
-            최대 <span className="text-purple-600">80%</span>할인
+            최대 <span className="text-purple-600">67%</span>할인
           </h1>
           <h1 className={`text-3xl`}>오늘만 이 가격!</h1>
         </div>
