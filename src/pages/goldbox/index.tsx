@@ -65,6 +65,11 @@ export default function GoldBox({ data, current }: Props) {
           </div>
         )}
       </div>
+      <div className="mt-10 my-4 ">
+        <span className="text-sm">
+          파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있음
+        </span>
+      </div>
     </>
   );
 }
