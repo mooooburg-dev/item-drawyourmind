@@ -1,6 +1,7 @@
 import {
   connectDatabase,
   getDocuments,
+  getSearchResults,
   insertDocument,
 } from '@/helpers/db-util';
 import { MongoClient } from 'mongodb';
@@ -12,7 +13,6 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     const data = await JSON.stringify(req.body);
-    console.log(data);
     const { name, url, image } = JSON.parse(req?.body);
 
     let client: MongoClient;
@@ -43,6 +43,8 @@ export default async function handler(
     let client: MongoClient;
     let documents: any;
 
+    const { query } = req.query;
+    const productId: number = Number(query);
     try {
       client = await connectDatabase();
     } catch (error) {
@@ -51,7 +53,10 @@ export default async function handler(
     }
 
     try {
-      documents = await getDocuments(client, 'items');
+      documents = productId
+        ? await getSearchResults(client, 'items', productId)
+        : await getDocuments(client, 'items');
+
       client.close();
     } catch (error) {
       res.status(500).json({ message: 'Get documents failed!' });
