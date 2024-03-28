@@ -26,7 +26,7 @@ export default function GoldBox({ data, current }: Props) {
         openGraph={{
           title: `${seoTitle}`,
           url: 'https://item.drawyourmind.com/goldbox',
-          description: '오늘만 이가격! 나만 모르고 있었어!',
+          description: '하루에 한번! 나만 모르고 있던 가격!',
           type: 'article',
           images: [
             {
