@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import ProductList from '@/components/item/productList/ProductList';
 import Footer from '@/components/item/footer/Footer';
