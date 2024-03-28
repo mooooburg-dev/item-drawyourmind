@@ -5,6 +5,7 @@ import ProductList from '@/components/item/productList/ProductList';
 import Footer from '@/components/item/footer/Footer';
 import Header from '@/components/item/header/Header';
 import Loading from '@/components/item/loading/Loading';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -58,6 +59,12 @@ export default function Home() {
           },
         ]}
       />
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+      </Head>
       <main className={`items-center w-full ${inter.className} bg-slate-950`}>
         <div className="max-w-7xl flex flex-col items-center p-5 min-h-screen mx-auto">
           <Header onSearch={handleSearch} />

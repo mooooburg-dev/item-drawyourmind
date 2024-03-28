@@ -28,8 +28,7 @@ export default function SearchArea({ onSearch }: SearchAreaType) {
     }
 
     if (e.key === 'Enter') {
-      // setTv(false);
-      // setSortType('popularity_score_desc');
+      setTimeout(() => inputRef.current?.blur(), 300);
       setQuery(keyword);
     }
   };
