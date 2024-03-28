@@ -26,3 +26,16 @@ export async function getDocuments(client: MongoClient, collection: string) {
     .toArray();
   return documents;
 }
+
+export async function getSearchResults(
+  client: MongoClient,
+  collection: string,
+  query: number
+) {
+  const db = client.db();
+  const documents = await db
+    .collection(collection)
+    .find({ no: query })
+    .toArray();
+  return documents;
+}
