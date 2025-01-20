@@ -1,10 +1,10 @@
-import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import React, { useEffect, useState } from 'react';
+import moment from 'moment-timezone';
 import { moneyFormatter } from '@/helpers/utils';
 import 'moment/locale/ko';
-import moment from 'moment-timezone';
 
 type Props = {
   keyword: string;

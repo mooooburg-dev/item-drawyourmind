@@ -1,9 +1,9 @@
-import ProductItem from '@/components/productItem/ProductItem';
 import { GetServerSideProps } from 'next';
-import React, { useEffect, useState } from 'react';
-import 'moment/locale/ko';
-import moment from 'moment-timezone';
 import { NextSeo } from 'next-seo';
+import React, { useEffect, useState } from 'react';
+import moment from 'moment-timezone';
+import ProductItem from '@/components/productItem/ProductItem';
+import 'moment/locale/ko';
 
 type Props = {
   data: any;

@@ -1,11 +1,11 @@
+import { NextApiRequest, NextApiResponse } from 'next';
+import { MongoClient } from 'mongodb';
 import {
   connectDatabase,
   getDocuments,
   getSearchResults,
   insertDocument,
 } from '@/helpers/db-util';
-import { MongoClient } from 'mongodb';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,

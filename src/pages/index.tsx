@@ -1,11 +1,11 @@
 import { Inter } from 'next/font/google';
-import { useState } from 'react';
+import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import ProductList from '@/components/item/productList/ProductList';
+import { useState } from 'react';
 import Footer from '@/components/item/footer/Footer';
 import Header from '@/components/item/header/Header';
 import Loading from '@/components/item/loading/Loading';
-import Head from 'next/head';
+import ProductList from '@/components/item/productList/ProductList';
 
 const inter = Inter({ subsets: ['latin'] });
 
